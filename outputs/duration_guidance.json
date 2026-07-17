@@ -1,0 +1,26 @@
+{
+  "tol_abs": 0.005,
+  "seasonality_floor_days": 7,
+  "n_series_where_floor_binds": 67,
+  "n_recommendations_in_window": 137,
+  "n_validated": 135,
+  "validation_pass_rate": 0.985401,
+  "median_recommended_days_by_category": {
+    "flat": 7,
+    "novelty_overshoot": 14,
+    "primacy_dip": 15,
+    "genuine_ramp": 90
+  },
+  "median_decay_days_by_category": {
+    "flat": 1,
+    "novelty_overshoot": 14,
+    "primacy_dip": 15,
+    "genuine_ramp": 90
+  },
+  "median_naive_settle_by_category": {
+    "flat": 1,
+    "novelty_overshoot": 40,
+    "primacy_dip": 43,
+    "genuine_ramp": 43
+  }
+}

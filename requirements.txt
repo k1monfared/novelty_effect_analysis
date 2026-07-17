@@ -1,0 +1,6 @@
+# Novelty-effect analysis framework (synthetic demonstration).
+# FOSS only. Deliberately minimal: no pandas, so the demo runs on a bare
+# numpy + scipy + matplotlib install.
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7

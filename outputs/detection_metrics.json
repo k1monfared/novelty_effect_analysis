@@ -1,0 +1,40 @@
+{
+  "binary": {
+    "n_series": 159,
+    "true_positive": 73,
+    "false_positive": 4,
+    "false_negative": 2,
+    "true_negative": 80,
+    "precision": 0.948052,
+    "recall": 0.973333,
+    "f1": 0.960526,
+    "accuracy": 0.962264
+  },
+  "category_accuracy": 0.955975,
+  "confusion_matrix": {
+    "flat": {
+      "flat": 58,
+      "novelty_overshoot": 1,
+      "primacy_dip": 2,
+      "genuine_ramp": 1
+    },
+    "novelty_overshoot": {
+      "flat": 0,
+      "novelty_overshoot": 40,
+      "primacy_dip": 0,
+      "genuine_ramp": 1
+    },
+    "primacy_dip": {
+      "flat": 1,
+      "novelty_overshoot": 0,
+      "primacy_dip": 33,
+      "genuine_ramp": 0
+    },
+    "genuine_ramp": {
+      "flat": 0,
+      "novelty_overshoot": 0,
+      "primacy_dip": 1,
+      "genuine_ramp": 21
+    }
+  }
+}

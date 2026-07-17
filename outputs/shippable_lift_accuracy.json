@@ -1,0 +1,59 @@
+{
+  "overall": {
+    "error": {
+      "n": 159,
+      "mae": 0.009532,
+      "rmse": 0.02025,
+      "bias": -0.002623,
+      "max_abs": 0.104029
+    },
+    "interval_coverage": 0.867925,
+    "n": 159
+  },
+  "by_category": {
+    "flat": {
+      "error": {
+        "n": 62,
+        "mae": 0.002316,
+        "rmse": 0.006488,
+        "bias": 0.000501,
+        "max_abs": 0.047646
+      },
+      "interval_coverage": 0.967742,
+      "n": 62
+    },
+    "novelty_overshoot": {
+      "error": {
+        "n": 41,
+        "mae": 0.016074,
+        "rmse": 0.031884,
+        "bias": -0.010972,
+        "max_abs": 0.104029
+      },
+      "interval_coverage": 0.829268,
+      "n": 41
+    },
+    "primacy_dip": {
+      "error": {
+        "n": 34,
+        "mae": 0.009516,
+        "rmse": 0.016183,
+        "bias": 0.002154,
+        "max_abs": 0.074197
+      },
+      "interval_coverage": 0.735294,
+      "n": 34
+    },
+    "genuine_ramp": {
+      "error": {
+        "n": 22,
+        "mae": 0.017702,
+        "rmse": 0.023364,
+        "bias": -0.003252,
+        "max_abs": 0.065407
+      },
+      "interval_coverage": 0.863636,
+      "n": 22
+    }
+  }
+}

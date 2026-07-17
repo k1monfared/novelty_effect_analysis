@@ -1,0 +1,72 @@
+{
+  "_about": "SYNTHETIC demo configuration for the novelty-effect analysis framework. All data produced from this config is simulated and clearly labeled. Setting: a large consumer web platform's experimentation program. No real users, metrics, or company data are involved.",
+
+  "seed": 404,
+
+  "data": {
+    "_about": "Controls the synthetic data generator. Effects are expressed as absolute fractional lifts on the treatment metric relative to control (0.02 means +2 percent). Each experiment-metric has a KNOWN ground-truth long-term effect L_true, an optional decaying transient of amplitude A_true and time-constant tau_true, a category label, and an optional additive weekly seasonal swing of amplitude seasonal_amp_true on the daily lift.",
+    "n_random_experiments": 30,
+    "metrics_per_random_experiment": 5,
+    "daily_users_min": 150000,
+    "daily_users_max": 400000,
+    "category_weights": {
+      "flat": 0.35,
+      "novelty_overshoot": 0.30,
+      "primacy_dip": 0.20,
+      "genuine_ramp": 0.15
+    },
+    "ranges": {
+      "flat":              {"L": [-0.010, 0.020], "A": [0.0, 0.0],       "tau": [0.0, 0.0],   "T_days": 42, "K_early_days": 14},
+      "novelty_overshoot": {"L": [ 0.010, 0.040], "A": [0.030, 0.090],   "tau": [2.0, 8.0],   "T_days": 42, "K_early_days": 14},
+      "primacy_dip":       {"L": [ 0.005, 0.030], "A": [0.030, 0.090],   "tau": [3.0, 9.0],   "T_days": 42, "K_early_days": 14},
+      "genuine_ramp":      {"L": [ 0.040, 0.110], "A_frac": [0.85, 1.00],"tau": [30.0, 70.0], "T_days": 42, "K_early_days": 14}
+    },
+    "seasonality": {
+      "_about": "A subset of random series carries an additive weekly seasonal swing on the daily lift, S*sin(2*pi*dow/7 + phase), which averages to zero over any whole week but biases a partial-week read. This is what the seasonality floor in the duration guidance protects against.",
+      "fraction_seasonal": 0.30,
+      "amp_min": 0.008,
+      "amp_max": 0.020
+    }
+  },
+
+  "detector": {
+    "_about": "Thresholds for classifying a daily-lift series into flat / novelty_overshoot / primacy_dip / genuine_ramp. tau_grid spans candidate decay constants (days). A series is flagged as a decaying transient (novelty or primacy) only when the transient is statistically significant, practically large, and has visibly saturated inside the observed window.",
+    "alpha": 0.05,
+    "amp_min_abs": 0.005,
+    "tau_grid_min": 0.5,
+    "tau_grid_max_pad": 90.0,
+    "tau_grid_points": 48,
+    "tau_max_ratio": 0.45,
+    "saturation_max": 0.40,
+    "linear_margin_aicc": 2.0
+  },
+
+  "duration": {
+    "_about": "Duration guidance. The decay-based component is how many days until the per-day novelty transient falls within tolerance of the estimated long-term effect. tol_abs is an absolute tolerance in fractional-lift units (0.005 = 0.5pp). The seasonality floor forces at least a whole number of seasonal cycles so a partial-week day-of-week mix cannot dominate the read. The final recommendation is the maximum of the two.",
+    "tol_abs": 0.005,
+    "tol_rel": 0.0,
+    "max_days": 90,
+    "seasonality_floor": {
+      "enabled": true,
+      "season_length_days": 7,
+      "min_cycles": 1
+    }
+  },
+
+  "estimator": {
+    "_about": "Naive vs debiased comparison. At each decision day K the naive estimate is the cumulative average daily lift over days 0..K-1; the debiased estimate is the fitted asymptote of the transient model. Bootstrap draws parametric resamples of the daily lifts to build a confidence interval on the debiased asymptote.",
+    "decision_day": 14,
+    "decision_day_grid": [7, 10, 14, 21, 28],
+    "asymptote_tau_cap_mult": 2.0,
+    "bootstrap_draws": 300,
+    "ci_lower_pct": 2.5,
+    "ci_upper_pct": 97.5
+  },
+
+  "projection": {
+    "_about": "Long-term impact projection for still-climbing genuine ramps. From the fit at the end of the collected window we project the lift at a business horizon (default 365 days), with a bootstrap confidence interval that widens with the horizon. This is an extrapolation beyond the data and is labeled as such.",
+    "business_horizon_days": 365,
+    "horizon_grid_days": [42, 90, 180, 365],
+    "bootstrap_draws": 300
+  }
+}

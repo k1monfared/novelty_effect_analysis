@@ -1,0 +1,9 @@
+{
+  "n_seasonal_series": 47,
+  "floor_days": 7,
+  "partial_read_day": 3,
+  "comparison_scope": "flat seasonal series (novelty-free)",
+  "mean_abs_error_partial_week": 0.005501,
+  "mean_abs_error_full_week": 0.000916,
+  "n_compared": 14
+}
